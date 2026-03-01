@@ -293,30 +293,6 @@ nav {
     margin-bottom: 40px;
 }
 
-.qr-download {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.qr-code {
-    background: #fff;
-    padding: 15px;
-    border-radius: var(--radius-m);
-}
-
-#qr-img {
-    width: 150px;
-    height: 150px;
-}
-
-.qr-small {
-    font-size: 0.9rem;
-    color: #fff !important;
-    opacity: 0.6;
-}
-
 /* Footer */
 footer {
     padding: 60px 0;
