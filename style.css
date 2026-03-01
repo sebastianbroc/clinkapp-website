@@ -28,6 +28,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -36,6 +37,7 @@ body {
     background-color: var(--background);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 .container {
@@ -112,6 +114,37 @@ nav {
 
 .nav-links a:hover {
     color: var(--text-muted);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: 0.3s;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Buttons */
@@ -404,17 +437,58 @@ footer {
 
 /* Mobile Responsive */
 @media (max-width: 900px) {
+    header {
+        height: 70px;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+        transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 1000;
+        gap: 40px;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 40px;
     }
 
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        word-break: break-word;
     }
 
     .hero-cta {
         justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
     }
 
     .features-grid,
@@ -422,11 +496,24 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .feature-card {
+        padding: 30px 20px;
+    }
+
     .hero-subtext {
-        margin: 0 auto 40px;
+        margin: 0 auto 32px;
+        font-size: 1.1rem;
+    }
+
+    .cta-box {
+        padding: 60px 20px;
+    }
+
+    .cta-box h2 {
+        font-size: 2rem;
     }
 
     .legal-page h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 }
