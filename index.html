@@ -153,6 +153,23 @@
         </div>
     </footer>
     <script>
+        // 1. QR-ID aus der URL extrahieren (clinkapp.de/qr=1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const qrId = urlParams.get('qr');
+        if (qrId) {
+            // 2. An die API senden
+            fetch('https://dumm-gehen-api.dumm-gmbh.de/api/track-qr-scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ qr_id: qrId }),
+            })
+            .then(response => response.json())
+            .then(data => console.log('Scan getrackt:', data))
+            .catch(error => console.error('Fehler beim Tracken:', error));
+        }
+
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const navLinksLinks = document.querySelectorAll('.nav-links a');
