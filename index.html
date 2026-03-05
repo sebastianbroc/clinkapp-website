@@ -155,7 +155,7 @@
     <script>
         // 1. QR-ID aus der URL extrahieren (clinkapp.de/qr=1)
         const urlParams = new URLSearchParams(window.location.search);
-        const qrId = urlParams.get('qr');
+        const qrId = urlParams.get('ref');
         if (qrId) {
             // 2. An die API senden
             fetch('https://dumm-gehen-api.dumm-gmbh.de/api/track-qr-scan', {
