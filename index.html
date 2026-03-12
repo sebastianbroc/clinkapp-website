@@ -46,6 +46,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Parallax Background -->
+    <div class="parallax-bg" id="parallaxBg"></div>
+    
     <header>
         <nav class="container">
             <div class="logo">
@@ -184,6 +187,34 @@
                 mobileMenuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Parallax Effect
+        const parallaxBg = document.getElementById('parallaxBg');
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallax = parallaxBg;
+            const speed = scrolled * 0.08;
+            
+            parallax.style.transform = `translateY(${-1*speed}px)`;
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+        
+        // Handle resize for responsive parallax
+        window.addEventListener('resize', () => {
+            requestTick();
         });
     </script>
 </body>
