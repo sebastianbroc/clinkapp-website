@@ -192,12 +192,54 @@ nav {
     border-radius: 100px;
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.2s, color 0.3s;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+        color 0.3s,
+        text-shadow 0.3s,
+        font-weight 0.3s,
+        box-shadow 0.3s;
     cursor: pointer;
     border: none;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    /* Base border for the effect */
+    box-shadow: 0 0 0 0px transparent;
+}
+
+.btn:hover {
+    animation: chromatic-border 0.6s infinite ease;
+}
+
+.cta-box .btn:hover {
+    font-weight: 900;
+    transform: skewX(-10deg) scale(1.05);
+    /* Skew approximates italic smoothly */
+}
+
+@keyframes chromatic-border {
+    0% {
+        box-shadow: 2px 0 0 rgba(255, 0, 255, 0.6), -2px 0 0 rgba(0, 255, 255, 0.6);
+    }
+
+    20% {
+        box-shadow: -2px 0 0 rgba(255, 0, 255, 0.6), 2px 0 0 rgba(0, 255, 255, 0.6);
+    }
+
+    40% {
+        box-shadow: 2px 1px 0 rgba(255, 0, 0, 0.5), -2px -1px 0 rgba(0, 0, 255, 0.5);
+    }
+
+    60% {
+        box-shadow: -2px -1px 0 rgba(255, 0, 0, 0.5), 2px 1px 0 rgba(0, 0, 255, 0.5);
+    }
+
+    80% {
+        box-shadow: 3px 0 0 rgba(255, 0, 255, 0.5), -3px 0 0 rgba(0, 255, 255, 0.5);
+    }
+
+    100% {
+        box-shadow: 2px 0 0 rgba(255, 0, 255, 0.6), -2px 0 0 rgba(0, 255, 255, 0.6);
+    }
 }
 
 .btn::before {
@@ -210,10 +252,6 @@ nav {
     transform: skewX(-20deg);
     transition: left 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     z-index: -1;
-}
-
-.btn:hover::before {
-    left: -5%;
 }
 
 .btn:active {
@@ -235,9 +273,6 @@ nav {
     color: var(--text-main);
 }
 
-.btn-secondary:hover {
-    color: #ffffff;
-}
 
 .btn-small {
     padding: 10px 20px;
@@ -450,7 +485,7 @@ nav {
 }
 
 .cta-box {
-    background-color: rgba(0, 0, 0, 0.9);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)) !important;
     color: #fff;
     border-radius: var(--radius-l);
     padding: 80px 40px;
@@ -458,13 +493,52 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    outline: 1px solid rgba(255, 255, 255, 0.05);
+    /* Double-border effect for extra sharpness */
+    outline-offset: -1px;
+    backdrop-filter: blur(40px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
 }
 
 .cta-box h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
-    transform: rotate(-2deg);
+    font-weight: 850;
+    letter-spacing: -1.5px;
+    animation: chromatic-edge 0.6s infinite steps(1);
+    font-style: italic;
+    line-height: 1;
+}
+
+@keyframes chromatic-edge {
+    0% {
+        text-shadow: 1.5px 1px rgba(255, 0, 255, 0.6), -1.5px 1px rgba(0, 255, 255, 0.6);
+    }
+
+    20% {
+        text-shadow: -1.5px -1px rgba(255, 0, 255, 0.6), 1.5px -1px rgba(0, 255, 255, 0.6);
+    }
+
+    40% {
+        text-shadow: 1px 0.5px rgba(255, 0, 0, 0.5), -1px -0.5px rgba(0, 0, 255, 0.5);
+    }
+
+    60% {
+        text-shadow: -1px -0.5px rgba(255, 0, 0, 0.5), 1px 0.5px rgba(0, 0, 255, 0.5);
+    }
+
+    80% {
+        text-shadow: 2px 0.5px rgba(255, 0, 255, 0.5), -2px 0.5px rgba(0, 255, 255, 0.5);
+    }
+
+    100% {
+        text-shadow: 1.5px 1.2px rgba(255, 0, 255, 0.6), -1.5px 1.2px rgba(0, 255, 255, 0.6);
+    }
 }
 
 .cta-box p {
@@ -678,38 +752,4 @@ footer {
     }
 }
 
-/* Intro Animation Overlay */
-#intro-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-    background: #000000;
-    overflow: hidden;
-    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.intro-text-element {
-    position: absolute;
-    font-family: var(--font-accent);
-    font-style: italic;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.15);
-    pointer-events: none;
-    white-space: nowrap;
-    user-select: none;
-    will-change: transform;
-    top: 0; 
-    left: 0;
-}
-
-.intro-logo-element {
-    position: absolute;
-    pointer-events: none;
-    will-change: transform;
-    filter: drop-shadow(0 0 30px rgba(255,255,255,0.1));
-    top: 0;
-    left: 0;
-}
+/* Intro Video Removed */
