@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Create the Logo Body
     const logoEl = document.createElement("img");
-    logoEl.src = "assets/images/clink-white.png"; // Changed to wide logo
+    logoEl.src = "assets/images/clink-white.webp"; // Changed to wide logo
     logoEl.className = "intro-logo-element";
     const logoWidth = Math.min(450, width * 0.8); // Make it a bit wider
     const logoHeight = logoWidth * 0.3; // Estimated height for wide logo
