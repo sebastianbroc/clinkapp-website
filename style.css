@@ -218,7 +218,7 @@ nav {
 .cta-box .btn:hover {
     font-weight: 900;
     transform: skewX(-10deg) scale(1.05);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
     /* Skew approximates italic smoothly */
 }

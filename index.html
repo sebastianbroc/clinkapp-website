@@ -43,6 +43,10 @@
       }
     }
     </script>
+    <!-- Performance Optimization: Preload LCP Image and CSS -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="assets/images/hero-graphic.webp" as="image" type="image/webp">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -82,7 +86,7 @@
                     <div class="app-mockup-wrapper">
                         <!-- Space for an image/graphic -->
                         <div class="sticker-inspiration">
-                            <img src="assets/images/hero-graphic.webp" alt="Clink App Illustration" id="hero-img">
+                            <img src="assets/images/hero-graphic.webp" alt="Clink App Illustration" id="hero-img" fetchpriority="high">
                         </div>
                     </div>
                 </div>
@@ -191,7 +195,7 @@
             </div>
         </div>
     </footer>
-    <script>
+    <script defer>
         // 1. QR-ID aus der URL extrahieren (clinkapp.de/qr=1)
         const urlParams = new URLSearchParams(window.location.search);
         const qrId = urlParams.get('ref');
