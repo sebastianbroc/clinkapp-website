@@ -210,9 +210,16 @@ nav {
     animation: chromatic-border 0.6s infinite ease;
 }
 
+.cta-box .btn {
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
 .cta-box .btn:hover {
     font-weight: 900;
     transform: skewX(-10deg) scale(1.05);
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
     /* Skew approximates italic smoothly */
 }
 
