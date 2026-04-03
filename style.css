@@ -53,8 +53,12 @@ body {
     transform: translateZ(0);
 }
 
-.frosted.inverted {
+.btn.frosted.inverted {
     background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.frosted.inverted {
+    background: rgba(0, 0, 0, 0.8);
     border-color: #38383a !important;
     backdrop-filter: none !important;
     mix-blend-mode: overlay !important;
@@ -492,7 +496,7 @@ nav {
 }
 
 .cta-box {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)) !important;
+    background: #1c1c1e linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)) center / cover no-repeat !important;
     color: #fff;
     border-radius: var(--radius-l);
     padding: 80px 40px;
@@ -510,6 +514,34 @@ nav {
         inset 0 0 30px rgba(255, 255, 255, 0.05);
     overflow: hidden;
     position: relative;
+}
+
+/* Background image using absolute positioning */
+.cta-box::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: calc(20% + 11vw);
+    background-image: url('assets/images/decorations/martini.webp');
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    mix-blend-mode: difference;
+    /* Similar effect to background-blend-mode */
+    opacity: 0.8;
+    /* Optional: slightly reduce opacity for better text contrast */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure content stays on top */
+.cta-box h2,
+.cta-box p,
+.cta-box a {
+    position: relative;
+    z-index: 1;
 }
 
 .cta-box h2 {
