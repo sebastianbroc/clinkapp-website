@@ -400,6 +400,10 @@ nav {
     gap: 60px;
 }
 
+.mockup-row .mockup-image.push-message {
+    transform: rotate(-2deg);
+}
+
 .mockup-row:last-child {
     margin-bottom: 0;
 }
@@ -439,7 +443,6 @@ nav {
     max-width: 600px;
     max-height: 600px;
     object-fit: contain;
-    border-radius: 40px;
     transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -552,6 +555,15 @@ nav {
     animation: chromatic-edge 0.6s infinite steps(1);
     font-style: italic;
     line-height: 1;
+}
+
+.cta-box .no-app-store-info {
+    margin: 0;
+    color: white !important;
+    opacity: 0.8;
+    margin-top: 20px;
+    font-size: 12pt;
+    line-height: 1.4;
 }
 
 @keyframes chromatic-edge {

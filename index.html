@@ -130,6 +130,16 @@
 
                 <div class="mockup-row reverse">
                     <div class="mockup-text frosted">
+                        <h2 class="italic-brand">Echtzeit-Infos</h2>
+                        <p>Erfahre per Push-Nachricht, wann du überholt wurdest und wer es auf Platz 1 geschafft hat.</p>
+                    </div>
+                    <div class="mockup-image push-message">
+                        <img src="assets/images/push-message.webp" alt="Clink App Push Notification">
+                    </div>
+                </div>
+
+                <div class="mockup-row">
+                    <div class="mockup-text frosted">
                         <h2 class="italic-brand">Der direkte Vergleich.</h2>
                         <p>Sieh in Echtzeit, wie du im Vergleich zu deinen Freunden abschneidest. Wer führt das Ranking an? Wer muss nachlegen?</p>
                     </div>
@@ -153,12 +163,12 @@
 
         <section id="how-it-works" class="how-it-works frosted">
             <div class="container">
-                <h2 class="section-title">In 3 einfachen Schritten zum Profi-Clinker</h2>
+                <h2 class="section-title">In 3 Schritten Partybereit.</h2>
                 <div class="steps">
                     <div class="step">
                         <span class="step-num">01</span>
                         <h3>App laden & individuelles Profil erstellen</h3>
-                        <p>Lade dir Clink aus dem App Store herunter, registriere dich schnell und unkompliziert und lege in wenigen Sekunden dein persönliches Party-Profil an.</p>
+                        <p>Füge die App zum Home-Bildschirm hinzu, registriere dich und lege in wenigen Sekunden dein persönliches Party-Profil an.</p>
                     </div>
                     <div class="step">
                         <span class="step-num">02</span>
@@ -179,6 +189,40 @@
                 <h2>Bereit für dein<br>nächstes Abenteuer?</h2>
                 <p>Hol dir Clink jetzt kostenlos und mach dein nächstes Event unvergesslich.</p>
                 <a href="https://app.clinkapp.de" class="btn btn-secondary">App öffnen</a>
+                <a class="no-app-store-info" href="#app-store-info">Warum sind wir nicht<br>im App-Store?</a>
+            </div>
+        </section>
+
+        <section id="app-store-info" class="app-store-info-section">
+            <div class="container">
+                <div class="app-store-info-inner frosted">
+                    <div class="app-store-info-icon">🍎</div>
+                    <h2 class="italic-brand">Warum kein App Store?</h2>
+                    <p class="app-store-intro">Ehrliche Antwort: Tim Cook wäre nicht begeistert.</p>
+                    <div class="app-store-reasons">
+                        <div class="app-store-reason">
+                            <span class="reason-icon">💸</span>
+                            <div>
+                                <h3>100 € im Jahr.</h3>
+                                <p>Apple verlangt für die Entwicklerlizenz 99$/Jahr. Machbar aber für die aktuelle Größe der App einfach noch nicht drin.</p>
+                            </div>
+                        </div>
+                        <div class="app-store-reason">
+                            <span class="reason-icon">🚫</span>
+                            <div>
+                                <h3>Alkohol-Tracking? Abgelehnt.</h3>
+                                <p>Apps, die den Alkoholkonsum tracken, haben es notorisch schwer im App Store. Apple lehnt entsprechende Apps regelmäßig ab oder fordert umfangreiche Umbaumaßnahmen – obwohl wir keinen Konsum bewerben, sondern ihn dokumentieren.</p>
+                            </div>
+                        </div>
+                        <div class="app-store-reason">
+                            <span class="reason-icon">🌐</span>
+                            <div>
+                                <h3>Die Web-App-Lösung.</h3>
+                                <p>Deshalb ist Clink eine Progressive Web App (PWA): direkt im Browser, ohne Download-Hürde, ohne Store-Abhängigkeit – und auf jedem Smartphone nutzbar. Einfach <a href="https://app.clinkapp.de" target="_blank">app.clinkapp.de</a> öffnen und zum Homescreen hinzufügen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -196,6 +240,89 @@
         </div>
     </footer>
     <style>
+        /* App Store Info Section */
+        .app-store-info-section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-store-info-inner {
+            border-radius: var(--radius-l);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .app-store-info-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            filter: grayscale(1);
+        }
+
+        .app-store-info-inner h2 {
+            font-size: 3rem;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .app-store-intro {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        .app-store-reasons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            text-align: left;
+        }
+
+        .app-store-reason {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(242, 242, 247, 0.6);
+            border-radius: var(--radius-m);
+            padding: 28px;
+            border: 1px solid var(--border-color);
+        }
+
+        .reason-icon {
+            font-size: 1.8rem;
+            filter: grayscale(1);
+        }
+
+        .app-store-reason h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .app-store-reason p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .app-store-reason a {
+            color: var(--text-main);
+            font-weight: 600;
+            text-underline-offset: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .app-store-info-inner {
+                padding: 36px 20px;
+            }
+            .app-store-info-inner h2 {
+                font-size: 2.2rem;
+            }
+            .app-store-reasons {
+                grid-template-columns: 1fr;
+            }
+        }
         /* Glitch word: Clink <-> drink */
         .glitch-word {
             display: inline-block;
