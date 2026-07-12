@@ -75,7 +75,7 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-content">
-                    <h1 class="italic-brand">Jeder Clink zählt.</h1>
+                    <h1 class="italic-brand">Jeder <span id="glitch-word" class="glitch-word" data-text="Drink">Drink</span> zählt.</h1>
                     <p class="hero-subtext">Verliere nie wieder den Überblick. Tracke deine Drinks, messe dich mit deinen Freunden und feiere smarter auf jedem Festival.</p>
                     <div class="hero-cta">
                         <a href="#download" class="btn btn-primary frosted inverted">App holen</a>
@@ -195,6 +195,84 @@
             </div>
         </div>
     </footer>
+    <style>
+        /* Glitch word: Clink <-> drink */
+        .glitch-word {
+            display: inline-block;
+            position: relative;
+            transition: color 0.05s;
+        }
+
+        /* Ghost layers for chromatic-style shift (b/w only) */
+        .glitch-word::before,
+        .glitch-word::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .glitch-word::before {
+            color: #000;
+            clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+        }
+
+        .glitch-word::after {
+            color: #000;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        }
+
+        /* Active glitch phase */
+        .glitch-word.glitching {
+            animation: glitch-main 0.35s steps(1) forwards;
+        }
+
+        .glitch-word.glitching::before {
+            opacity: 1;
+            animation: glitch-top 0.35s steps(1) forwards;
+        }
+
+        .glitch-word.glitching::after {
+            opacity: 1;
+            animation: glitch-bot 0.35s steps(1) forwards;
+        }
+
+        @keyframes glitch-main {
+            0%   { transform: translate(0, 0);      color: #000; }
+            10%  { transform: translate(-3px, 1px); color: #666; }
+            20%  { transform: translate(3px, -1px); color: #000; }
+            30%  { transform: translate(-2px, 2px); color: #888; }
+            40%  { transform: translate(2px, -2px); color: #000; }
+            50%  { transform: translate(-4px, 0px); color: #aaa; }
+            60%  { transform: translate(4px, 1px);  color: #000; }
+            70%  { transform: translate(-1px,-1px);  color: #555; }
+            80%  { transform: translate(1px, 2px);  color: #000; }
+            90%  { transform: translate(0, 0);      color: #333; }
+            100% { transform: translate(0, 0);      color: #000; }
+        }
+
+        @keyframes glitch-top {
+            0%   { transform: translate(0, 0); }
+            15%  { transform: translate(4px, 0); }
+            35%  { transform: translate(-4px, 0); }
+            55%  { transform: translate(2px, 0); }
+            75%  { transform: translate(-2px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes glitch-bot {
+            0%   { transform: translate(0, 0); }
+            20%  { transform: translate(-3px, 0); }
+            40%  { transform: translate(3px, 0); }
+            60%  { transform: translate(-5px, 0); }
+            80%  { transform: translate(1px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
     <script defer>
         // 1. QR-ID aus der URL extrahieren (clinkapp.de/qr=1)
         const urlParams = new URLSearchParams(window.location.search);
@@ -259,6 +337,37 @@
         window.addEventListener('resize', () => {
             requestTick();
         });
+
+        // Glitch effect: Clink <-> drink
+        (function() {
+            const el = document.getElementById('glitch-word');
+            if (!el) return;
+
+            const words = ['Drink', 'Clink'];
+            let current = 0;
+
+            function triggerGlitch() {
+                el.classList.add('glitching');
+
+                // Mid-animation: swap text & data-text
+                setTimeout(function() {
+                    current = (current + 1) % words.length;
+                    el.textContent = words[current];
+                    el.setAttribute('data-text', words[current]);
+                }, 175); // halfway through animation
+
+                // Remove class so it can be re-triggered
+                setTimeout(function() {
+                    el.classList.remove('glitching');
+                }, 380);
+            }
+
+            // First glitch after 3s, then every 4s
+            setTimeout(function loop() {
+                triggerGlitch();
+                setTimeout(loop, 4000);
+            }, 3000);
+        })();
     </script>
 </body>
 </html>
